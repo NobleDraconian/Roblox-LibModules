@@ -5,7 +5,7 @@
 	
 	Programmed by @Reshiram110
 	
-	Last updated : 10-17-2018 @ 2:03 AM EST
+	Last updated : 10-17-2018 @ 2:17 AM EST
 --]]
 
 ---------------------
@@ -50,7 +50,6 @@ local function RunTimer(Timer)
 		end
 		
 		if Timer.TimePosition==Timer.MaxTime or Timer.TimePosition==Timer.MinTime then Timer.IsRunning=false end
-		print("TIME POSITION : "..Timer.TimePosition)
 	end
 	Timer.Events.Stopped:Fire()
 end
@@ -59,8 +58,8 @@ end
 -- @Name : New
 -- @Description : Creates a new instance of the timer class and returns it.
 -- @Params : string "Name" - The name of the timer.
---           Number "Max_Time" - The maximum time value of the timer.
 --           string "Timer_Mode" - The mode of the timer.
+--           Number "Max_Time" - The maximum time value of the timer.
 --           Number "Tick_Interval" - The interval (in seconds) to update the timer.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function Timer.new(Name,Timer_Mode,Max_Time,Tick_Interval)
