@@ -18,8 +18,6 @@ local RunService=game:GetService("RunService")
 -------------
 local Timer={}
 
-
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- @Name : RunTimer
 -- @Description : Runs the timer until the time position reaches Max_Time or Min_Time, or until Timer.Running is false.
@@ -35,16 +33,15 @@ local function RunTimer(Timer)
 		local Delta=RunService.Heartbeat:wait()
 		
 		if Timer.Mode=="Up" then
-			Timer.TimePosition=math.min(Timer.TimePosition+Delta,Timer.MaxTime)
+			Timer.TimePosition=math.min(Timer.TimePosition+(Delta*Timer.Speed),Timer.MaxTime)
 		elseif Timer.Mode=="Down" then
-			Timer.TimePosition=math.max(Timer.TimePosition-Delta,Timer.MinTime)
+			Timer.TimePosition=math.max(Timer.TimePosition-(Delta*Timer.Speed),Timer.MinTime)
 		else --Invalid mode.
 			warn("[Timer] Timer '"..Timer.Name.."' was set to an invalid mode : '"..Timer.Mode.."'")
 			Timer.IsRunning=false
 		end
 		
 		if tick()-LastStartTick>=Timer.TickInterval then --Fire the tick signal, the tick interval is up
-			warn(Timer.TimePosition)
 			Timer.Events.Tick:Fire()
 			LastStartTick=tick()
 		end
@@ -61,13 +58,15 @@ end
 --           string "Timer_Mode" - The mode of the timer.
 --           Number "Max_Time" - The maximum time value of the timer.
 --           Number "Tick_Interval" - The interval (in seconds) to update the timer.
+--           Number "Speed" - The speed at which the timer runs.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function Timer.new(Name,Timer_Mode,Max_Time,Tick_Interval)
+function Timer.new(Name,Timer_Mode,Max_Time,Tick_Interval,Speed)
 	local NewTimer={
 		Name=Name or "Timer",
 		MinTime=0,
 		MaxTime=Max_Time or math.huge,
 		TickInterval=Tick_Interval or 1,
+		Speed=Speed or 1,
 		
 		TimePosition=Max_Time or 0,
 		Mode=Timer_Mode or "Down",
@@ -87,6 +86,40 @@ function Timer.new(Name,Timer_Mode,Max_Time,Tick_Interval)
 	setmetatable(NewTimer,{__index=Timer})
 	
 	return NewTimer
+end
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- @Name : GetTimestamp
+-- @Description : Returns the current timestamp of the timer in the specified format.
+-- @Params : string "Format" - The format to return the timestamp in. Acceptable formats are as follows:
+--                             HMS - Hours, minutes and seconds | HH:MM:SS
+--                             MS - Minutes and seconds only | MM:SS
+--                             S - Seconds only | SS
+--                             M - Minutes only | MM
+--                             H - Hours only | HH
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function Timer:GetTimestamp(Format)
+	local Seconds=self.TimePosition
+	
+	if Format=="HMS" then
+		local H=string.format("%02.f",math.floor(Seconds/3600))
+		local M=string.format("%02.f",math.floor(Seconds/60-(H*60)))
+		local S=string.format("%02.f",math.floor(Seconds-H*3600-M*60))
+		return H..":"..M..":"..S
+	elseif Format=="MS" then
+		local M=string.format("%02.f",math.floor(Seconds/60))
+		local S=string.format("%02.f",math.floor(Seconds-M*60))
+		return M..":"..S
+	elseif Format=="S" then
+		local S=string.format("%02.f",math.floor(Seconds))
+		return S
+	elseif Format=="M" then
+		local M=string.format("%02.f",math.floor(Seconds/60))
+		return M
+	elseif Format=="H" then
+		local H=string.format("%02.f",math.floor(Seconds/3600))
+		return H
+	end
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
