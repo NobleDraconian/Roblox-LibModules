@@ -1,7 +1,7 @@
 --[[
 	Audio Player
 
-	eActs as a 'music player', allowing the easy deployment of audio on the client and server.
+	Acts as a 'music player', allowing the easy deployment of audio on the client and server.
 
 	Programmed by @Reshiram110
 ]]
@@ -17,7 +17,7 @@ local TweenService=game:GetService("TweenService")
 -------------
 -- DEFINES --
 -------------
-local CLASS_DEBUG=true --Determines whether or not debug output will be displayed.
+local CLASS_DEBUG=false --Determines whether or not debug output will be displayed.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- DEBUG CLASS METHODS
