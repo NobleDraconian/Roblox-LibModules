@@ -81,6 +81,12 @@ function AudioPlayer.new()
 	NewAudioPlayer.AudioRemoved=NewAudioPlayer._Events.AudioRemoved.Event
 	setmetatable(NewAudioPlayer,{__index=AudioPlayer})
 
+	NewAudioPlayer.Sound.Ended:connect(function()
+		if NewAudioPlayer.AutoPlay then
+			NewAudioPlayer:Next()
+		end
+	end)
+
 	return NewAudioPlayer
 end
 
@@ -446,9 +452,11 @@ function AudioPlayer:Stop(Tween)
 		spawn(function() --We spawn the function so the calling thread doesn't yield.
 			AudioTween.Completed:wait()
 			self.Sound:Stop()
+			self.Sound.TimePosition=0
 		end)
 	else
 		self.Sound:Stop()
+		self.Sound.TimePosition=0
 	end
 end
 
@@ -569,6 +577,56 @@ function AudioPlayer:JumpToIndex(IndexNumber)
 	self:Stop()
 	self.PlaylistPosition=IndexNumber
 	self.CurrentAudio=self.Playlist[IndexNumber]
+
+	if self.AutoPlay then self:Play() end
+end
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- @Name : Next
+-- @Description : Jumps to the next song in the playlist if available.
+--                If the looped property of the audioplayer is true, it will wrap to the beginning of the playlist.
+-- @Example : AudioPlayer:Next()
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function AudioPlayer:Next()
+
+	----------------
+	-- ASSERTIONS --
+	----------------
+	assert(self._Destroyed==false,"[Audio Player '"..self.Name.."'] Next() : Cannot go to next index in destroyed audioplayer.")
+
+	if self.Playlist[self.PlaylistPosition+1]~=nil then
+		self:JumpToIndex(self.PlaylistPosition+1)
+	else
+		if self.Looped then
+			self:JumpToIndex(1)
+		else
+			warn("[Audio Player '"..self.Name.."'] Next() : Reached end of playlist, did not jump to next index.")
+		end
+	end
+end
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- @Name : Previous
+-- @Description : Jumps to the previous song in the playlist if available.
+--                If the looped property of the audioplayer is true, it will wrap to the end of the playlist.
+-- @Example : AudioPlayer:Previous()
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function AudioPlayer:Previous()
+
+	----------------
+	-- ASSERTIONS --
+	----------------
+	assert(self._Destroyed==false,"[Audio Player '"..self.Name.."'] Previous() : Cannot go to previous index in destroyed audioplayer.")
+
+	if self.Playlist[self.PlaylistPosition-1]~=nil then
+		self:JumpToIndex(self.PlaylistPosition-1)
+	else
+		if self.Looped then
+			self:JumpToIndex(#self.Playlist)
+		else
+			warn("[Audio Player '"..self.Name.."'] Previous() : Reached beginning of playlist, did not jump to previous index.")
+		end
+	end
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
