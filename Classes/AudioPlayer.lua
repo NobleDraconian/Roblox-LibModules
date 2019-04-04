@@ -1,7 +1,7 @@
 --[[
 	Audio Player
 
-	Acts as a 'music player', allowing the easy deployment of audio on the client and server.
+	eActs as a 'music player', allowing the easy deployment of audio on the client and server.
 
 	Programmed by @Reshiram110
 ]]
