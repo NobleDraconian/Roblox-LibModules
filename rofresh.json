@@ -1,0 +1,14 @@
+{
+	"name": "Lib files",
+	"allowAnyPlaceId": true,
+	"partitions": {
+		"Classes":{
+			"path":"./Classes",
+			"target":"ReplicatedStorage.lib.Classes"
+		},
+		"Utils":{
+			"path":"./Utils",
+			"target":"ReplicatedStorage.lib.Utils"
+		}
+	}
+}
