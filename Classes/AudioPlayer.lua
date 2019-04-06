@@ -9,7 +9,7 @@
 local AudioPlayer={}
 
 ---------------------
--- Roblox Services -- 
+-- Roblox Services --
 ---------------------
 local HttpService=game:GetService("HttpService")
 local TweenService=game:GetService("TweenService")
@@ -53,13 +53,13 @@ function AudioPlayer.new()
 
 		--[[ Properties ]]--
 		Name="AudioPlayer",
-		
+
 		Playlist={}, --Contains all of the information about the different sounds
 		PlaylistPosition=0, --The current position in the playlist.
 
 		CurrentAudio={ --Information about the current song
 			Name="",
-			ID="rbxassetid://0", 
+			ID="rbxassetid://0",
 			--AudioOptions={} --Contains properties and other options for the audio.
 		},
 
@@ -69,13 +69,13 @@ function AudioPlayer.new()
 		Sound=Instance.new('Sound',game.Workspace),
 
 		_Destroyed=false, --Used to prevent further usage after this object is destroyed.
-		
+
 		--[[ Events ]]--
 		_Events={
 			AudioAdded=Instance.new('BindableEvent'), --Fired when an audio is added to the playlist.
 			AudioRemoved=Instance.new('BindableEvent'), --Fired when an audio is removed from the playlist.
 		}
-		
+
 	}
 	NewAudioPlayer.AudioAdded=NewAudioPlayer._Events.AudioAdded.Event
 	NewAudioPlayer.AudioRemoved=NewAudioPlayer._Events.AudioRemoved.Event
@@ -162,7 +162,7 @@ function AudioPlayer:AddAudioAtIndex(IndexNumber,AudioName,ID)
 		self:SpitPlaylist()
 		print("")
 	end
-	
+
 	self._Events.AudioAdded:Fire(AudioName,IndexNumber)
 end
 
@@ -222,7 +222,7 @@ function AudioPlayer:RemoveAudioAtIndex(IndexNumber)
 	end
 
 	table.remove(self.Playlist,IndexNumber)
-	
+
 	------------------------------------------------
 	-- Update current audio and playlist position --
 	------------------------------------------------
@@ -361,7 +361,7 @@ end
 --            })
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function AudioPlayer:PlayAudioAtIndex(IndexNumber,AudioSettings)
-	
+
 	----------------
 	-- ASSERTIONS --
 	----------------
