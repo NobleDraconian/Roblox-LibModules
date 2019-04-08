@@ -66,7 +66,7 @@ function AudioPlayer.new()
 		AutoPlay=false, --Determines whether or not the audioplayer will autoplay when moving to a new index in the playlist.
 		Looped=false, --Determines whether or not the audioplayer will loop through the playlist.
 
-		Sound=Instance.new('Sound',game.Workspace),
+		Sound=Instance.new('Sound',Workspace),
 
 		_Destroyed=false, --Used to prevent further usage after this object is destroyed.
 
