@@ -1,0 +1,6 @@
+[submodule "Utils/Cmdr/"]
+	path = Utils/Cmdr/
+	url = https://github.com/evaera/Cmdr
+[submodule "Utils/Cmdr"]
+	path = Utils/Cmdr
+	url = https://github.com/evaera/Cmdr
