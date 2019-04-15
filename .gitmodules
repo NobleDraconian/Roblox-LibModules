@@ -4,6 +4,9 @@
 [submodule "Utils/Roact"]
 	path = Utils/Roact
 	url = https://github.com/Roblox/roact
+[submodule "Utils/Rodux"]
+	path = Utils/Rodux
+	url = https://github.com/Roblox/rodux
 [submodule "Utils/Roact-Rodux"]
 	path = Utils/Roact-Rodux
 	url = https://github.com/Roblox/roact-rodux
