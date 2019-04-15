@@ -1,3 +1,6 @@
 [submodule "Utils/Cmdr"]
 	path = Utils/Cmdr
 	url = https://github.com/evaera/Cmdr
+[submodule "Utils/Roact"]
+	path = Utils/Roact
+	url = https://github.com/Roblox/roact
