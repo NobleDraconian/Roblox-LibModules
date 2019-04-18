@@ -1,12 +1,3 @@
 [submodule "Utils/Cmdr"]
 	path = Utils/Cmdr
 	url = git@github.com:evaera/Cmdr.git
-[submodule "Utils/Roact_Rodux"]
-	path = Utils/Roact_Rodux
-	url = git@github.com:Roblox/roact-rodux.git
-[submodule "Utils/Rodux"]
-	path = Utils/Rodux
-	url = git@github.com:Roblox/rodux.git
-[submodule "Utils/Roact"]
-	path = Utils/Roact
-	url = git@github.com:Roblox/roact.git
