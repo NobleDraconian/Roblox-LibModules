@@ -2,7 +2,7 @@ return function(Path)
 	local Objects={}
 	local ObjectReference=game
 	
-	for Object in string.gmatch(Path,"%a+") do
+	for Object in string.gmatch(Path,"%w+") do
 		if Object~="game" then
 			table.insert(Objects,Object)
 		end
