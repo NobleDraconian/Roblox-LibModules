@@ -11,8 +11,7 @@ function AssetUtils:PreloadAsync(Asset,Type)
 		ContentProvider:PreloadAsync({Audio})
 		Audio:Destroy()
 	elseif Type=="Mesh" then
-		local Mesh=Instance.new('MeshPart')
-		Mesh.MeshId=Asset
+		local Mesh=Asset
 		ContentProvider:PreloadAsync({Mesh})
 		Mesh:Destroy()
 	end
