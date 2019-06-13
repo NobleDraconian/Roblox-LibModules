@@ -10,6 +10,11 @@ function AssetUtils:PreloadAsync(Asset,Type)
 		Audio.SoundId="rbxassetid://"..Asset
 		ContentProvider:PreloadAsync({Audio})
 		Audio:Destroy()
+	elseif Type=="Mesh" then
+		local Mesh=Instance.new('MeshPart')
+		Mesh.MeshId=Asset
+		ContentProvider:PreloadAsync({Mesh})
+		Mesh:Destroy()
 	end
 end
 
