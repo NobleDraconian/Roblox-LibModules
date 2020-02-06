@@ -1,0 +1,3 @@
+[submodule "Packages/Cmdr"]
+	path = Packages/Cmdr
+	url = git@github.com:evaera/Cmdr
