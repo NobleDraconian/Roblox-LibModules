@@ -1,1 +1,1 @@
-This is where I keep my random util/class modules that are seperate from Dragon Engine. Feel free to use them!
+This is just a lib that a lot of my projects depend on.
