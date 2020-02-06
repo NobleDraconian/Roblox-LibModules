@@ -1,12 +1,12 @@
 {
-    "name": "lib",
-    "tree": {
-		"$className":"DataModel",
-		
-		"ReplicatedStorage":{
-			"$className":"ReplicatedStorage",
+	"name" : "lib",
+	"tree" : {
+		"$className" : "Folder",
+		"Utils" : {
+			"$path" : "src/Utils",
 
-			"lib":{"$path":"."}
-		}
-    }
+			"Cmdr" : {"$path" : "Packages/Cmdr/Cmdr"}
+		},
+		"Classes" : {"$path" : "src/Classes"}
+	}
 }
