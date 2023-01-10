@@ -1,12 +1,10 @@
 {
 	"name" : "lib",
+	
 	"tree" : {
 		"$className" : "Folder",
-		"Utils" : {
-			"$path" : "src/Utils",
 
-			"Cmdr" : {"$path" : "Packages/Cmdr/Cmdr"}
-		},
+		"Utils" : {"$path" : "src/Utils"},
 		"Classes" : {"$path" : "src/Classes"}
 	}
 }
