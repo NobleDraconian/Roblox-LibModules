@@ -1,0 +1,45 @@
+name : Library release
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  release:
+    name: Create library release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
+
+    - name: Setup foreman
+      uses: rojo-rbx/setup-foreman@6d3c8043db88319f8482262680b37f73595a8686
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Install dependencies
+      run: /
+        wally install
+    
+    - name: Build project
+      run: |
+        rojo build default.project.json --output Temp/CurrentBuild.rbxm
+      
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
+        draft: true
+
+    - name: Upload release assets
+      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Temp/CurrentBuild.rbxm
+        asset_name: Build_${{ github.ref_name }}.rbxm
+        asset_content_type: application/octet-stream
