@@ -16,6 +16,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish wally package
-        run: /
+        run: |
           echo ${{ secrets.WALLY_AUTH }} > ~/.wally/auth.toml
           wally publish
