@@ -1,7 +1,7 @@
 [package]
 name = "nobledraconian/roblox-libmodules"
 description = "Collection of libraries & utilities, used by Noble_Draconian"
-version = "1.0.0"
+version = "2.0.0"
 authors = ["Noble_Draconian"]
 realm = "shared"
 registry = "https://github.com/UpliftGames/wally-index"
