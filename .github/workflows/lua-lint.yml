@@ -4,14 +4,10 @@ on:
     branches:
     - 'v*.*.*'
     - master
-    paths:
-      - 'src/**'
   pull_request:
     branches:
       - 'v*.*.*'
       - master
-    paths:
-      - 'src/**'
 jobs:
   selene-lint:
     name: Lint src/
