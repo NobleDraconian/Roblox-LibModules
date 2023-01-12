@@ -41,5 +41,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./Temp/CurrentBuild.rbxm
-        asset_name: Build_${{ github.ref_name }}.rbxm
+        asset_name: Release_${{ github.ref_name }}.rbxm
         asset_content_type: application/octet-stream
