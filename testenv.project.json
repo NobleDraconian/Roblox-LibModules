@@ -5,12 +5,9 @@
 
 		"ReplicatedStorage": {
 			"$className" : "ReplicatedStorage",
-
-			"lib" : {
-				"$className" : "Folder",
-				
-				"Utils" : {"$path" : "src/Utils"},
-				"Classes" : {"$path" : "src/Classes"}
+			
+			"roblox-libmodules" : {
+				"$path" : "src"
 			}
 		}
 	}

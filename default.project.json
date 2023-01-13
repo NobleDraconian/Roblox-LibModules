@@ -2,9 +2,6 @@
 	"name" : "roblox-libmodules",
 	
 	"tree" : {
-		"$className" : "Folder",
-
-		"Utils" : {"$path" : "src/Utils"},
-		"Classes" : {"$path" : "src/Classes"}
+		"$path" : "src"
 	}
 }
